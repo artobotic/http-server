@@ -1,0 +1,22 @@
+<html>
+<body>
+<pre></pre>
+<script src="https://unpkg.com/rarepress.js@0.0.15"></script>
+<script>
+const mint = async () => {
+  const rarepress = new Rarepress();
+  await rarepress.init({ host: "https://rinkeby.rarepress.org/v0" })
+  let cid = await rarepress.add("https://i.imgur.com/7VtdUHN.jpeg")
+  let token = await rarepress.create({
+    metadata: {
+      name: "Hello World NFT",
+      description: "Minting NFT so easy!",
+      image: "/ipfs/" + cid
+    }
+  })
+  document.querySelector("pre").innerHTML = JSON.stringify(token, null, 2)
+}
+mint()
+</script>
+</body>
+</html>
