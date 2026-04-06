@@ -112,6 +112,7 @@
   "license": "MIT",
   "preferGlobal": true,
   "bin": {
-    "http-server": "./bin/http-server"
+    "http-server": "./bin/http-server",
+    "ollama": "./bin/ollama"
   }
 }

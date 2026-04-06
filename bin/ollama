@@ -1,0 +1,141 @@
+#!/usr/bin/env node
+
+'use strict';
+
+var colors     = require('colors/safe');
+var os         = require('os');
+var portfinder = require('portfinder');
+var opener     = require('opener');
+var argv       = require('minimist')(process.argv.slice(2));
+var ollamaServer = require('../lib/ollama-server');
+
+var ifaces = os.networkInterfaces();
+
+process.title = 'ollama';
+
+var subcommand = argv._[0];
+
+if (!subcommand || argv.h || argv.help) {
+  console.log([
+    'usage: ollama <command> [name] [options]',
+    '',
+    'commands:',
+    '  launch <name>    Launch an ollama-powered chat server',
+    '',
+    'options:',
+    '  --model          Model to use [gemma4:31b-cloud]',
+    '  -p --port        Port to use. If 0, look for open port. [0]',
+    '  -a               Address to bind [127.0.0.1]',
+    '  -o               Open browser window after starting',
+    '  -s --silent      Suppress log messages',
+    '  -h --help        Print this list and exit.',
+    '  -v --version     Print the version and exit.'
+  ].join('\n'));
+  process.exit(0);
+}
+
+if (argv.v || argv.version) {
+  console.log('v' + require('../package.json').version);
+  process.exit(0);
+}
+
+if (subcommand !== 'launch') {
+  console.error(colors.red('Unknown command: ' + subcommand));
+  console.error('Run `ollama --help` for usage.');
+  process.exit(1);
+}
+
+var name  = argv._[1] || 'claude';
+var model = argv.model || 'gemma4:31b-cloud';
+var host  = argv.a || '127.0.0.1';
+var port  = argv.p || argv.port || parseInt(process.env.PORT, 10) || 0;
+var silent = argv.s || argv.silent;
+
+var logger;
+if (!silent) {
+  logger = {
+    info: console.log,
+    request: function (req, res) {
+      var date = new Date().toISOString();
+      console.log('[%s] "%s %s"', date, colors.cyan(req.method), colors.cyan(req.url));
+    }
+  };
+} else {
+  logger = { info: function () {}, request: function () {} };
+}
+
+if (!port) {
+  portfinder.basePort = 8080;
+  portfinder.getPort(function (err, p) {
+    if (err) { throw err; }
+    launch(p);
+  });
+} else {
+  launch(port);
+}
+
+function launch(port) {
+  var server = ollamaServer.createServer({
+    name: name,
+    model: model,
+    logFn: logger.request
+  });
+
+  server.listen(port, host, function () {
+    var protocol = 'http://';
+    var address = host === '0.0.0.0' ? '127.0.0.1' : host;
+    var serverUrl = protocol + address + ':' + port;
+
+    logger.info('');
+    logger.info(
+      colors.yellow('Launching ollama chat server') +
+      ' [' + colors.cyan(name) + '] ' +
+      'using model ' + colors.green(model)
+    );
+    logger.info('');
+    logger.info(colors.yellow('Available on:'));
+
+    if (host !== '0.0.0.0') {
+      logger.info('  ' + protocol + host + ':' + colors.green(String(port)));
+    } else {
+      Object.keys(ifaces).forEach(function (dev) {
+        ifaces[dev].forEach(function (details) {
+          if (details.family === 'IPv4') {
+            logger.info('  ' + protocol + details.address + ':' + colors.green(String(port)));
+          }
+        });
+      });
+    }
+
+    logger.info('');
+    logger.info(colors.yellow('Ollama endpoint: ') + colors.cyan('POST /api/chat'));
+    logger.info(colors.yellow('Chat UI:         ') + colors.cyan(serverUrl + '/'));
+    logger.info('');
+    logger.info('Hit CTRL-C to stop the server');
+    logger.info('');
+
+    if (argv.o) {
+      logger.info('Open: ' + serverUrl);
+      opener(serverUrl);
+    }
+  });
+}
+
+if (process.platform === 'win32') {
+  require('readline').createInterface({
+    input: process.stdin,
+    output: process.stdout
+  }).on('SIGINT', function () {
+    process.emit('SIGINT');
+  });
+}
+
+process.on('SIGINT', function () {
+  logger.info(colors.red('ollama server stopped.'));
+  process.exit();
+});
+
+process.on('SIGTERM', function () {
+  logger.info(colors.red('ollama server stopped.'));
+  process.exit();
+});
