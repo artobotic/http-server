@@ -1,0 +1,152 @@
+[
+  {
+    "id": "data-analysis",
+    "name": "Data Analysis",
+    "description": "Analyze datasets, compute statistics, identify trends and patterns in structured data",
+    "triggers": ["analyze data", "statistics", "trends", "csv", "excel", "metrics", "aggregation", "correlation", "outliers", "distribution"]
+  },
+  {
+    "id": "web-scraping",
+    "name": "Web Scraping",
+    "description": "Extract data from websites using HTTP requests and HTML parsing techniques",
+    "triggers": ["scrape", "crawl", "extract from website", "html parsing", "selenium", "puppeteer", "beautifulsoup", "web data"]
+  },
+  {
+    "id": "sql-query",
+    "name": "SQL Query Builder",
+    "description": "Write, optimize, and debug SQL queries for relational databases",
+    "triggers": ["sql", "query", "database", "select", "join", "postgres", "mysql", "sqlite", "aggregate", "group by"]
+  },
+  {
+    "id": "api-integration",
+    "name": "API Integration",
+    "description": "Connect to third-party REST or GraphQL APIs, handle authentication and data mapping",
+    "triggers": ["api", "rest", "graphql", "endpoint", "fetch", "http request", "webhook", "oauth", "integration"]
+  },
+  {
+    "id": "code-review",
+    "name": "Code Review",
+    "description": "Review code for correctness, style, security vulnerabilities, and performance issues",
+    "triggers": ["review", "audit", "code quality", "pull request", "refactor", "best practices", "lint", "security", "performance"]
+  },
+  {
+    "id": "unit-testing",
+    "name": "Unit Testing",
+    "description": "Write unit tests, integration tests, and end-to-end tests for code correctness",
+    "triggers": ["test", "unit test", "jest", "mocha", "pytest", "coverage", "mock", "stub", "assertion", "tdd"]
+  },
+  {
+    "id": "regex-builder",
+    "name": "Regex Builder",
+    "description": "Construct and explain regular expressions for text matching and extraction",
+    "triggers": ["regex", "regular expression", "pattern match", "grep", "search pattern", "string matching", "capture group"]
+  },
+  {
+    "id": "docker-config",
+    "name": "Docker Configuration",
+    "description": "Write Dockerfiles, docker-compose configs, and container orchestration setups",
+    "triggers": ["docker", "container", "dockerfile", "compose", "kubernetes", "image", "pod", "deploy", "containerize"]
+  },
+  {
+    "id": "ci-cd-pipeline",
+    "name": "CI/CD Pipeline",
+    "description": "Set up continuous integration and deployment pipelines with GitHub Actions, Jenkins, or CircleCI",
+    "triggers": ["ci", "cd", "pipeline", "github actions", "jenkins", "circleci", "deploy", "automate", "build", "release"]
+  },
+  {
+    "id": "debugging",
+    "name": "Debugging",
+    "description": "Identify and fix runtime errors, stack traces, and unexpected behavior in code",
+    "triggers": ["debug", "error", "bug", "stack trace", "exception", "crash", "fix", "breakpoint", "trace", "logs"]
+  },
+  {
+    "id": "data-visualization",
+    "name": "Data Visualization",
+    "description": "Create charts, graphs, and dashboards to visually represent data insights",
+    "triggers": ["chart", "graph", "plot", "visualize", "dashboard", "bar chart", "line chart", "pie chart", "d3", "matplotlib"]
+  },
+  {
+    "id": "security-audit",
+    "name": "Security Audit",
+    "description": "Identify security vulnerabilities such as XSS, SQL injection, CSRF, and insecure configurations",
+    "triggers": ["security", "vulnerability", "xss", "injection", "csrf", "penetration", "owasp", "exploit", "insecure", "authentication"]
+  },
+  {
+    "id": "performance-optimization",
+    "name": "Performance Optimization",
+    "description": "Profile and optimize code for speed, memory usage, and scalability",
+    "triggers": ["performance", "slow", "optimize", "bottleneck", "profiling", "memory", "latency", "throughput", "cache", "benchmark"]
+  },
+  {
+    "id": "documentation-writer",
+    "name": "Documentation Writer",
+    "description": "Write clear technical documentation, API docs, README files, and inline code comments",
+    "triggers": ["documentation", "readme", "docs", "api docs", "comment", "explain", "tutorial", "guide", "jsdoc", "docstring"]
+  },
+  {
+    "id": "database-migration",
+    "name": "Database Migration",
+    "description": "Plan and execute database schema migrations safely with rollback support",
+    "triggers": ["migration", "schema change", "alter table", "migrate", "rollback", "flyway", "liquibase", "knex", "alembic"]
+  },
+  {
+    "id": "authentication",
+    "name": "Authentication & Authorization",
+    "description": "Implement login flows, JWT tokens, OAuth2, session management, and role-based access control",
+    "triggers": ["auth", "login", "jwt", "oauth", "session", "rbac", "permissions", "user management", "sso", "password"]
+  },
+  {
+    "id": "cli-tool",
+    "name": "CLI Tool Builder",
+    "description": "Build command-line tools and scripts with argument parsing and shell integration",
+    "triggers": ["cli", "command line", "script", "shell", "bash", "terminal", "argument parser", "flag", "stdin", "stdout"]
+  },
+  {
+    "id": "file-processing",
+    "name": "File Processing",
+    "description": "Read, transform, and write files including CSV, JSON, XML, and binary formats",
+    "triggers": ["file", "read file", "write file", "csv", "json", "xml", "parse", "transform", "batch processing", "stream"]
+  },
+  {
+    "id": "machine-learning",
+    "name": "Machine Learning",
+    "description": "Train and evaluate ML models, feature engineering, and model selection",
+    "triggers": ["machine learning", "ml", "model", "train", "predict", "classification", "regression", "neural network", "sklearn", "tensorflow"]
+  },
+  {
+    "id": "natural-language-processing",
+    "name": "Natural Language Processing",
+    "description": "Process and analyze text: tokenization, sentiment analysis, named entity recognition, embeddings",
+    "triggers": ["nlp", "text analysis", "sentiment", "tokenize", "embedding", "language model", "entity recognition", "text classification", "spacy", "huggingface"]
+  },
+  {
+    "id": "caching",
+    "name": "Caching Strategy",
+    "description": "Implement caching with Redis, Memcached, or in-memory stores to improve performance",
+    "triggers": ["cache", "redis", "memcached", "ttl", "invalidate", "memoize", "cdn", "etag", "http cache", "stale"]
+  },
+  {
+    "id": "message-queue",
+    "name": "Message Queue",
+    "description": "Set up and use message queues like RabbitMQ, Kafka, or SQS for async processing",
+    "triggers": ["queue", "rabbitmq", "kafka", "sqs", "async", "worker", "producer", "consumer", "pub sub", "event driven"]
+  },
+  {
+    "id": "frontend-component",
+    "name": "Frontend Component Builder",
+    "description": "Build reusable UI components in React, Vue, or Svelte with proper state management",
+    "triggers": ["component", "react", "vue", "svelte", "ui", "frontend", "state", "props", "render", "jsx"]
+  },
+  {
+    "id": "environment-config",
+    "name": "Environment Configuration",
+    "description": "Manage environment variables, secrets, and config files across dev, staging, and production",
+    "triggers": ["env", "environment", "config", "dotenv", "secrets", "production", "staging", "variables", "vault", "12-factor"]
+  },
+  {
+    "id": "logging-monitoring",
+    "name": "Logging & Monitoring",
+    "description": "Set up structured logging, error tracking, and observability with metrics and alerts",
+    "triggers": ["logging", "monitoring", "observability", "metrics", "alerts", "sentry", "datadog", "prometheus", "tracing", "logs"]
+  }
+]
